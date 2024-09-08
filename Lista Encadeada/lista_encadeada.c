@@ -1,52 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Definindo o nó da lista encadeada */
-struct lista{
+struct no{
     int info;
-    struct lista * proximo;
+    struct no * proximo;
 };
-typedef struct lista Lista; // Define um apelido para struct lista como Lista
+typedef struct no No;
 
-/* Retorna uma lista vazia */
-Lista * listaVazia() {
+No * listaVazia(){
     return NULL;
 }
 
-/* Função para inserção no início */
-Lista* insereInicio(Lista* listaInteiros, int valor) {
-    Lista* novoElemento = (Lista*) malloc(sizeof(Lista));
-    novoElemento->info = valor;
-    novoElemento->proximo = listaInteiros;
-    return novoElemento;
+No * imprimeInicio(No * lista, int valor){
+    No * novo = (No*) malloc(sizeof(No));
+    novo -> info = valor;
+    novo -> proximo = lista;
+    return novo;
 }
 
-/* Função para remover itens da lista */
-Lista* remover(Lista* listaInteiros, int valor){
-    Lista* anterior = NULL;             // Ponteiro para percorrer valor anterior
-    Lista* ponteiro = listaInteiros;    // Ponteiro para percorrer a lista
+No * imprimeFinal(No * lista, int valor){
+    No * novo = (No*) malloc(sizeof(No));
+    novo -> info = valor;
+    novo -> proximo = NULL;
 
-    while (ponteiro != NULL && ponteiro->info != valor){
-        anterior = ponteiro;
-        ponteiro = ponteiro->proximo;
+    if(lista == NULL){
+        return novo;
+    } else{
+        No * p = lista;
+        while(p -> proximo != NULL){
+            p = p->proximo;
+        }
+        p = p->proximo = novo;
+        return lista;   
     }
-    if (ponteiro==NULL)
-        return listaInteiros;
-    
-    if (anterior==NULL){
-        listaInteiros = ponteiro->proximo;
+}
+
+No * remover(No * lista, int valor){
+    No * ant = NULL;
+    No * p = lista;
+    while (p != NULL && p->info != valor){
+        ant = p;
+        p = p->proximo;
+    }
+    if (p==NULL){
+        return lista;
+    }
+
+    if (p==lista){
+        lista = p->proximo; // Remove no inicio
     }
     else{
-        anterior->proximo = ponteiro->proximo;
+        ant->proximo = p->proximo;  // Remove no final
     }
-    free(ponteiro);
-    return listaInteiros;
+
+    free(p);
+    return lista;
 }
 
-/* Função para imprimir a lista */
-void imprimirLista(Lista * listaInteiros) {
-    Lista * p;
-    p = listaInteiros;
+void imprimirLista(No * lista){
+    No * p;
+    p = lista;
     while(p != NULL){
         printf("%d ", p->info);
         p = p -> proximo;
@@ -54,18 +67,13 @@ void imprimirLista(Lista * listaInteiros) {
 }
 
 int main(){
-    Lista* listaEncadeada; // Declarar uma lista não inicializada
-    listaEncadeada = listaVazia(); // Inicializa a lista como vazia
-    listaEncadeada = insereInicio(listaEncadeada, 10);
-    listaEncadeada = insereInicio(listaEncadeada, 25);
-    listaEncadeada = insereInicio(listaEncadeada, 45);
+    No* listaEncadeada;
+    listaEncadeada = listaVazia();
+    listaEncadeada = imprimeInicio(listaEncadeada, 1);
+    listaEncadeada = imprimeFinal(listaEncadeada, 4);
+    listaEncadeada = imprimeInicio(listaEncadeada, 3);
 
-    // Inserção no início
-    printf("Lista encadeada: ");
-    imprimirLista(listaEncadeada);
-
-    printf("\nLista com valor removido: ");
-    listaEncadeada = remover(listaEncadeada, 25);
+    printf("\nLista Encadeada: ");
     imprimirLista(listaEncadeada);
 
     return 0;

@@ -11,13 +11,13 @@ struct Aluno{   // Definir struct Aluno
 
 int main()
 {
-    struct Aluno turma[100]; // Array turma da struct Aluno
+    struct Aluno turma[5]; // Array turma da struct Aluno
     int i;
-    for(i=0;i<100;i++){    // Loop para obter a média de cada aluno
+    for(i=0;i<5;i++){    // Loop para obter a média de cada aluno
         printf("\nDigite o nome do %d° aluno: ", i + 1);
-        scanf("%s", turma[i].nome);
+        scanf("%s", turma[i].nome); // %s = string
         printf("Digite a nota da P1: ");
-        scanf("%f", &turma[i].nota1);
+        scanf("%f", &turma[i].nota1); // %f = float  
         printf("Digite a nota da P2: ");
         scanf("%f", &turma[i].nota2);
         printf("Digite a nota da atividade: ");
@@ -28,4 +28,6 @@ int main()
 
         printf("\nAluno: %s - Média Final: %.2f\n", turma[i].nome, turma[i].mediaFinal);
     }
+    
+    return 0;
 }

@@ -1,19 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct no {
+typedef struct no {
     int info;
     struct no *proximo;
-};
-typedef struct no No;
+}No;
 
-struct fila {
+typedef struct fila {
     No *inicio;
     No *fim;
-};
-typedef struct fila Fila;
+}Fila;
 
-// Função para inicializar a fila vazia
 Fila* filaVazia() {
     Fila *f = (Fila*) malloc(sizeof(Fila));
     f->inicio = NULL;

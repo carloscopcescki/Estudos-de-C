@@ -47,4 +47,3 @@ int main(){
         printf("%d ",numeros[i]);
     }
 }
-

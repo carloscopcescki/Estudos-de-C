@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 // Função para ordenar (Bubble Sort)
 void bubble(int arr[], int n){
     // Percorre o array

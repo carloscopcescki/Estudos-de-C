@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 // Função para ordenar (Bubble Sort)
-void bubble(int arr[], int n){
+void bubble_sort(int arr[], int n){
     // Percorre o array
     for(int i = 0; i < n - 1; i++){
         // Percorre cada elemento do array
@@ -39,7 +39,7 @@ int main(){
     }
 
     // Função bubble sort (realiza a ordenação dos números dentro do nosso array)
-    bubble(numeros, tamanho);
+    bubble_sort(numeros, tamanho);
 
     // Loop para exibir os valores ordenados
     printf("\n\nNúmeros ordenados: ");
